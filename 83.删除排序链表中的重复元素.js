@@ -18,13 +18,13 @@
  */
 var deleteDuplicates = function (head) {
 
-  let temp = head
+  let temp = head   // 用temp来进行指针的移动，最后返回head
   while (temp) {
-    if (!temp.next) {
+    if (!temp.next) {  // 如果下一步为null，直接退出循环
       break
     }
     if (temp.val === temp.next.val) {
-      temp.next = temp.next.next
+      temp.next = temp.next.next    // 如果当前值和下一个指针的值一样，跳过下一个指针
     } else {
       temp = temp.next
     }
