@@ -10,9 +10,8 @@
  * @return {number[]}
  */
 var plusOne = function (digits) {
-  let flag = true
   let n = digits.length - 1
-  while (flag) {
+  while (true) {
     let result = digits[n] + 1
     digits[n--] = result >= 10 ? result - 10 : result
 
@@ -22,7 +21,7 @@ var plusOne = function (digits) {
     }
 
     if (result < 10) {
-      flag = false
+      break
     }
   }
 
