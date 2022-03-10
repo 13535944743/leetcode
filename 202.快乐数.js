@@ -20,18 +20,16 @@ var isHappy = function (n) {
     return sum
   }
 
-  while (n >= 10) {
-    n = getSumSquare(n)
-    if (n === 1) {
-      return true
-    }
+  let slow = n
+  let fast = getSumSquare(n)
+  while (fast !== 1 && fast !== slow) {
+    slow = getSumSquare(slow)
+    fast = getSumSquare(getSumSquare(fast))
   }
 
-  if (n === 1) {
-    return true
-  }
-
-  return false
+  return fast === 1
 };
+
+
 // @lc code=end
 
