@@ -11,19 +11,17 @@
  */
 var lengthOfLastWord = function (s) {
   let count = 0
-  let flag = false
+  let len = s.length - 1
 
-  for (let i = s.length - 1; i >= 0; i--) {
-    if (flag && s[i] !== ' ') {
-      count++;
-    } else if (s[i] !== ' ') {
-      flag = true
-      count++;
-    } else if (flag) {
+  while (s.charAt(len) === ' ') {
+    len--   // 找出第一个不是空格的位置
+  }
+
+  for (; len >= 0; len--) {   // 开始计数，知道遇到空格，或反向遍历完
+    if (s.charAt(len) === ' ') {
       break
-    } else {
-      continue
     }
+    count++
   }
 
   return count
