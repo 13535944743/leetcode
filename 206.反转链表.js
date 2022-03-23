@@ -17,18 +17,15 @@
  * @return {ListNode}
  */
 var reverseList = function (head) {
-  let pre = null              // 每次都存上一个指针
-  let cur = head
-
-  while (cur) {
-    const next = cur.next   // 暂存next指针
-    cur.next = pre          // 当前指针指向前一个指针
-
-    pre = cur               // 继续遍历下去
-    cur = next
+  if (head === null || head.next === null) {
+    return head
   }
 
-  return pre
+  const newHead = reverseList(head.next)
+  head.next.next = head
+  head.next = null
+
+  return newHead
 };
 // @lc code=end
 
