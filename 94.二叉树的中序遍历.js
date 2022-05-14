@@ -18,21 +18,20 @@
  * @return {number[]}
  */
 var inorderTraversal = function (root) {
-  // 迭代法
-  const res = []
-  const stk = []          // 用于存放节点，遍历完左边节点后，遍历右边
 
-  while (root || stk.length) {
-    while (root) {
-      stk.push(root)
-      root = root.left
+  const res = []
+
+  const inorder = (root) => {
+    if (!root) {
+      return
     }
 
-    root = stk.pop()
+    inorder(root.left)
     res.push(root.val)
-    root = root.right
+    inorder(root.right)
   }
 
+  inorder(root)
   return res
 };
 // @lc code=end
