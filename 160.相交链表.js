@@ -19,9 +19,9 @@
  * @return {ListNode}
  */
 var getIntersectionNode = function (headA, headB) {
-  if (headA === null || headB === null) {
-    return null
-  }
+  // if (headA === null || headB === null) {
+  //   return null
+  // }
 
   let pA = headA, pB = headB
   while (pA !== pB) {
