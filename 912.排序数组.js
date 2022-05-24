@@ -15,7 +15,8 @@ var sortArray = function (nums) {
     return nums
   }
 
-  const pivotIndex = Math.floor(nums.length / 2)
+  // 随机取标杆，避免最坏情况
+  const pivotIndex = Math.floor(Math.random() * (nums.length - 1))
   const pivot = nums.splice(pivotIndex, 1)[0]
 
   const left = []
