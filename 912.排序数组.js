@@ -10,27 +10,49 @@
  * @return {number[]}
  */
 var sortArray = function (nums) {
+  quicksort(nums, 0, nums.length - 1)
 
-  if (nums.length <= 1) {
-    return nums
+  return nums
+};
+
+function quicksort(nums, l, r) {
+  if (l >= r) {
+    return
   }
+  const pos = randomIndex(nums, l, r)
+  quicksort(nums, l, pos - 1)
+  quicksort(nums, pos + 1, r)
+}
 
-  // 随机取标杆，避免最坏情况
-  const pivotIndex = Math.floor(Math.random() * (nums.length - 1))
-  const pivot = nums.splice(pivotIndex, 1)[0]
+function randomIndex(nums, l, r) {
+  const i = Math.floor(Math.random() * (r - l) + l)
 
-  const left = []
-  const right = []
+  const temp = nums[i]
 
-  for (let i = 0, len = nums.length; i < len; i++) {
-    if (nums[i] < pivot) {
-      left.push(nums[i])
-    } else {
-      right.push(nums[i])
+
+  nums[i] = nums[r]
+  nums[r] = temp
+  // [nums[i], nums[r]] = [nums[r], nums[i]]
+
+  return partition(nums, l, r)
+}
+
+function partition(nums, l, r) {
+  const pivot = nums[r]
+
+  let i = l
+
+  for (let j = l; j < r; j++) {
+    if (nums[j] <= pivot) {
+      // 把小于标杆的移到左边
+      [nums[i], nums[j]] = [nums[j], nums[i]]
+      i++
     }
   }
 
-  return sortArray(left).concat(pivot, sortArray(right))
-};
+  // 标杆归位
+  [nums[i], nums[r]] = [nums[r], nums[i]]
+  return i
+}
 // @lc code=end
 
